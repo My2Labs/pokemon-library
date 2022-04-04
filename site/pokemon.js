@@ -1,6 +1,11 @@
 const url = new URL(window.location)
 const queryString = new URLSearchParams(url.search)
 const main = document.querySelector("main")
+const h1 = document.querySelector("h1")
+const p = document.createElement("p")
+h1.append(p)
+
+
 
 fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
     .then(response => response.json())

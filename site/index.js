@@ -9,7 +9,8 @@ const p = document.createElement("p")
 
 
 
-fetch(url)
+
+fetch("https://pokeapi.co/api/v2/pokemon?limit=50&offset=173")
     .then(response => response.json())
     .then((response) => {
         const sharronsPokemon = response.results
@@ -18,24 +19,23 @@ fetch(url)
             .map(url => {
                 return fetch(url).then(response => response.json())
             })
-        console.log(myList)
+
         return Promise.all(myList)
-    }).then(whatwasreturned => {
-        whatwasreturned.map(response => {
+    }).then(responses => {
+        responses.map(response => {
             const fiftyPokemon = document.createElement("button")
-            fiftyPokemon.classList = "fifty-pokemon"
+            fiftyPokemon.classList = "pokemon-listing"
             const name = `${response.species.name[0].toUpperCase()}${response.species.name.slice(1)}`;
             fiftyPokemon.innerHTML = `
-                            <p>
-                                <img src="${response.sprites.front_shiny}" alt="${name}" />
-                                <p><a href="pokemon.html?/pokemon=${response.abilities}${response.height}${response.weight}">${name}</a></p>
-                            </p>
-                        `
-            console.log(fiftyPokemon)
+                <p>
+                    <img src="${response.sprites.front_shiny}" alt="${name}" />
+                    <p><a href="pokemon.html?pokemon=${response.id}">${name}</a></p>
+                </p>
+            `
             return fiftyPokemon
-        }).forEach(pokemonList => {
+        }).forEach(pokeListing => {
             const spinner = document.querySelector(".spinner")
             spinner.classList.add("hidden")
-            ul.append(pokemonList)
+            ul.append(pokeListing)
         })
     })
