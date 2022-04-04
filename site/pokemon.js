@@ -1,11 +1,7 @@
 const url = new URL(window.location)
 const queryString = new URLSearchParams(url.search)
 const main = document.querySelector("main")
-const h1 = document.querySelector("h1")
-const p = document.createElement("p")
-h1.append(p)
-
-
+const body = document.querySelector("body")
 
 fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
     .then(response => response.json())
@@ -20,26 +16,29 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
                 <img src="${response.sprites.front_shiny}" alt="${name}" />
                 <figcaption>${name}</figcaption>
             </figure>
-            <h2>Abilities</h2>
         `;
         main.append(pokemonDetails);
-        const abilitiesRequests = response.abilities
+        const abilityRequests = response.abilities
             .map(response => response.ability.url)
             .map(url => {
                 return fetch(url).then(response => response.json())
             })
-        return Promise.all(abilitiesRequests)
+        return Promise.all(abilityRequests)
     }).then(responses => {
         const ul = document.createElement("ul")
+        const h3 = document.createElement("h3")
+        h3.textContent = "Abilities"
+        ul.append(h3)
         ul.classList = "abilities"
-        main.append(ul)
+        body.append(ul)
         responses.map(response => {
             const li = document.createElement("li")
             li.innerHTML = `
                 <span class="ability-name">${response.name[0].toUpperCase()}${response.name.slice(1)}</span>
-                <span class="ability-short-description">${response.effect_entries[1].short_effect}</span> 
+                <span class="ability-description">${response.effect_entries[1].short_effect}</span> 
                 `
             return li;
+
         }).forEach(li => {
             ul.append(li)
         })

@@ -1,9 +1,7 @@
 const app = document.querySelector(".pokemon")
-const div = document.createElement("div")
 const url = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=173"
 const a = document.createElement("a")
 const ul = document.querySelector("ul")
-const main = document.querySelector("main")
 ul.append(a)
 const p = document.createElement("p")
 

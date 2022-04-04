@@ -8,6 +8,10 @@ ul {
     list-style: none;
 }
 
+li {
+    padding: 0px 0 40px 0;
+}
+
 div {
     text-align: center;
     display: inline-block;
@@ -16,6 +20,10 @@ div {
 
 figure {
     width: 150px;
+}
+
+figcaption {
+    color: rgb(164, 164, 235);
 }
 
 p {
@@ -56,4 +64,8 @@ a {
 h1,
 h2 {
     color: white;
+}
+
+a:hover {
+    color: pink;
 }
