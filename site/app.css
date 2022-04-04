@@ -1,0 +1,28 @@
+img,
+ul {
+    width: 90%;
+}
+
+p {
+    width: 90%;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    background-color: rgb(246, 8, 8);
+}
+
+button {
+    width: 18%;
+    background: linear-gradient(150deg, rgb(96, 94, 94), white, rgb(190, 186, 186));
+    border-color: white;
+    margin: 1px;
+}
+
+a {
+    text-decoration: none;
+}
